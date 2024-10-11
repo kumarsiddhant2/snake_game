@@ -14,8 +14,8 @@ snake[0] = {
 
 // Create the food
 let food = {
-    x: Math.floor(Math.random() * 19 + 1) * box,
-    y: Math.floor(Math.random() * 19 + 1) * box
+    x: Math.floor(Math.random() * 39 + 1) * box,
+    y: Math.floor(Math.random() * 39 + 1) * box
 };
 
 // Define the initial score
@@ -81,8 +81,8 @@ function draw() {
     if (snakeX == food.x && snakeY == food.y) {
         score++;
         food = {
-            x: Math.floor(Math.random() * 19 + 1) * box,
-            y: Math.floor(Math.random() * 19 + 1) * box
+            x: Math.floor(Math.random() * 39 + 1) * box,
+            y: Math.floor(Math.random() * 39 + 1) * box
         };
     } else {
         snake.pop();
