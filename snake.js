@@ -113,8 +113,8 @@ let game = setInterval(draw, 100);
 function restartGame() {
     snake = [{ x: 9 * box, y: 10 * box }];
     food = {
-        x: Math.floor(Math.random() * 19 + 1) * box,
-        y: Math.floor(Math.random() * 19 + 1) * box
+        x: Math.floor(Math.random() * 39 + 1) * box,
+        y: Math.floor(Math.random() * 39 + 1) * box
     };
     score = 0;
     d = null; // Reset direction
