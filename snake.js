@@ -108,3 +108,23 @@ function draw() {
 
 // Call draw function every 100 ms
 let game = setInterval(draw, 100);
+
+// Function to restart the game
+function restartGame() {
+    snake = [{ x: 9 * box, y: 10 * box }];
+    food = {
+        x: Math.floor(Math.random() * 19 + 1) * box,
+        y: Math.floor(Math.random() * 19 + 1) * box
+    };
+    score = 0;
+    d = null; // Reset direction
+    clearInterval(game);
+    game = setInterval(draw, 100);
+}
+
+// Add event listener for restarting
+document.addEventListener("keydown", function(event) {
+    if (event.keyCode === 82) { // R key
+        restartGame();
+    }
+});
