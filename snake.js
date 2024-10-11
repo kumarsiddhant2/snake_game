@@ -76,14 +76,25 @@ function draw() {
     if (d == "UP") snakeY -= box;
     if (d == "RIGHT") snakeX += box;
     if (d == "DOWN") snakeY += box;
+    
+function generateFood() {
+    let validPosition = false;
+    let newFood;
 
+    while (!validPosition) {
+        newFood = {
+            x: Math.floor(Math.random() * 19 + 1) * box,
+            y: Math.floor(Math.random() * 19 + 1) * box
+        };
+        validPosition = !snake.some(segment => segment.x === newFood.x && segment.y === newFood.y);
+    }
+
+    return newFood;
+}
     // Check if snake eats food
     if (snakeX == food.x && snakeY == food.y) {
         score++;
-        food = {
-            x: Math.floor(Math.random() * 39 + 1) * box,
-            y: Math.floor(Math.random() * 39 + 1) * box
-        };
+        food = generateFood();
     } else {
         snake.pop();
     }
