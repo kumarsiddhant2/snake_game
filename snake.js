@@ -20,6 +20,7 @@ let food = {
 
 // Define the initial score
 let score = 0;
+let maxscore = 0;
 
 // Control the snake direction
 let d;
@@ -95,6 +96,10 @@ function generateFood() {
     if (snakeX == food.x && snakeY == food.y) {
         score++;
         food = generateFood();
+    // Update maximum score if current score exceeds it
+    if (score > maxscore) {
+        maxscore = score;
+    }
     } else {
         snake.pop();
     }
@@ -115,6 +120,7 @@ function generateFood() {
     ctx.fillStyle = "black";
     ctx.font = "20px Arial";
     ctx.fillText("Score: " + score, box, box);
+    ctx.fillText("Max Score: " + maxscore, box, box * 2);
 }
 
 // Call draw function every 100 ms
