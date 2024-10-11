@@ -16,11 +16,30 @@
         canvas {
             border: 2px solid #000;
             background-color: #eee;
+            flex-direction: column; /* Align items vertically */
+        }
+        #congratulations {
+            display: none; /* Hide by default */
+            position: absolute; /* Position it over the canvas */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 2px solid green;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 10; /* Make sure it appears above other content */
         }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div id="congratulations">
+        <h1>Congratulations!</h1>
+        <p id="maxScoreMessage"></p>
+        <button id="closeMessage">Close</button>
+    </div>
     <script src="snake.js"></script>
 </body>
 </html>
