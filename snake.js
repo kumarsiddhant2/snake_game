@@ -14,8 +14,8 @@ snake[0] = {
 
 // Create the food
 let food = {
-    x: Math.floor(Math.random() * 39 + 1) * box,
-    y: Math.floor(Math.random() * 39 + 1) * box
+    x: Math.floor(Math.random() * 39) * box,
+    y: Math.floor(Math.random() * 39) * box
 };
 
 // Define the initial score
@@ -45,11 +45,12 @@ function showCongratulations() {
     const maxScoreMessage = document.getElementById("maxScoreMessage");
     maxScoreMessage.textContent = "Your new maximum score is: " + maxscore;
     messageDiv.style.display = "block"; // Show the message
-    
+}
+
 // Check if snake collides with itself or walls
 function collision(newHead, snake) {
     for (let i = 0; i < snake.length; i++) {
-        if (newHead.x == snake[i].x && newHead.y == snake[i].y) {
+        if (newHead.x === snake[i].x && newHead.y === snake[i].y) {
             return true;
         }
     }
@@ -59,32 +60,7 @@ function collision(newHead, snake) {
     return false;
 }
 
-// Draw the game
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw the snake
-    for (let i = 0; i < snake.length; i++) {
-        ctx.fillStyle = (i == 0) ? "green" : "white";
-        ctx.fillRect(snake[i].x, snake[i].y, box, box);
-
-        ctx.strokeStyle = "red";
-        ctx.strokeRect(snake[i].x, snake[i].y, box, box);
-    }
-
-    // Draw the food
-    ctx.fillStyle = "red";
-    ctx.fillRect(food.x, food.y, box, box);
-
-    // Move the snake
-    let snakeX = snake[0].x;
-    let snakeY = snake[0].y;
-
-    if (d == "LEFT") snakeX -= box;
-    if (d == "UP") snakeY -= box;
-    if (d == "RIGHT") snakeX += box;
-    if (d == "DOWN") snakeY += box;
-    
+// Generate food in a valid position
 function generateFood() {
     let validPosition = false;
     let newFood;
@@ -99,16 +75,43 @@ function generateFood() {
 
     return newFood;
 }
+
+// Draw the game
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the snake
+    for (let i = 0; i < snake.length; i++) {
+        ctx.fillStyle = (i === 0) ? "green" : "white";
+        ctx.fillRect(snake[i].x, snake[i].y, box, box);
+        ctx.strokeStyle = "red";
+        ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+    }
+
+    // Draw the food
+    ctx.fillStyle = "red";
+    ctx.fillRect(food.x, food.y, box, box);
+
+    // Move the snake
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+
+    if (d === "LEFT") snakeX -= box;
+    if (d === "UP") snakeY -= box;
+    if (d === "RIGHT") snakeX += box;
+    if (d === "DOWN") snakeY += box;
+
     // Check if snake eats food
-    if (snakeX == food.x && snakeY == food.y) {
+    if (snakeX === food.x && snakeY === food.y) {
         score++;
         food = generateFood();
-    // Update maximum score if current score exceeds it
-    if (score > maxscore) {
-        maxscore = score;
-    }
+
+        // Update maximum score if current score exceeds it
+        if (score > maxscore) {
+            maxscore = score;
+        }
     } else {
-        snake.pop();
+        snake.pop(); // Remove the tail
     }
 
     // Add new head
@@ -124,7 +127,7 @@ function generateFood() {
         }
     }
 
-    snake.unshift(newHead);
+    snake.unshift(newHead); // Add new head to the snake
 
     // Draw the score
     ctx.fillStyle = "black";
@@ -139,16 +142,13 @@ let game = setInterval(draw, 100);
 // Function to restart the game
 function restartGame() {
     snake = [{ x: 9 * box, y: 10 * box }];
-    food = {
-        x: Math.floor(Math.random() * 39 + 1) * box,
-        y: Math.floor(Math.random() * 39 + 1) * box
-    };
+    food = generateFood(); // Generate new food immediately
     score = 0;
     d = null; // Reset direction
     clearInterval(game);
     game = setInterval(draw, 100);
 }
-    
+
 // Add event listener for the close button
 document.getElementById("closeMessage").addEventListener("click", function() {
     document.getElementById("congratulations").style.display = "none"; // Hide the message
