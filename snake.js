@@ -133,7 +133,7 @@ function restartGame() {
     snake = [{ x: 9 * box, y: 10 * box }];
     food = generateFood(); // Generate new food immediately
     score = 0;
-    d = null; // Reset direction
+    d = ""; // Reset direction
     clearInterval(game);
     game = setInterval(draw, 100);
 }
