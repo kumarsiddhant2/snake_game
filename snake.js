@@ -39,6 +39,13 @@ function direction(event) {
     }
 }
 
+// Show the congratulatory message
+function showCongratulations() {
+    const messageDiv = document.getElementById("congratulations");
+    const maxScoreMessage = document.getElementById("maxScoreMessage");
+    maxScoreMessage.textContent = "Your new maximum score is: " + maxscore;
+    messageDiv.style.display = "block"; // Show the message
+    
 // Check if snake collides with itself or walls
 function collision(newHead, snake) {
     for (let i = 0; i < snake.length; i++) {
@@ -112,6 +119,9 @@ function generateFood() {
 
     if (collision(newHead, snake)) {
         clearInterval(game);
+        if (score > maxscore) {
+            showCongratulations(); // Show congratulatory message
+        }
     }
 
     snake.unshift(newHead);
@@ -138,6 +148,11 @@ function restartGame() {
     clearInterval(game);
     game = setInterval(draw, 100);
 }
+    
+// Add event listener for the close button
+document.getElementById("closeMessage").addEventListener("click", function() {
+    document.getElementById("congratulations").style.display = "none"; // Hide the message
+});
 
 // Add event listener for restarting
 document.addEventListener("keydown", function(event) {
