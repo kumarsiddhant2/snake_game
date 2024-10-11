@@ -84,8 +84,8 @@ function generateFood() {
 
     while (!validPosition) {
         newFood = {
-            x: Math.floor(Math.random() * 39 + 1) * box,
-            y: Math.floor(Math.random() * 39 + 1) * box
+            x: Math.floor(Math.random() * 39) * box,
+            y: Math.floor(Math.random() * 39) * box
         };
         validPosition = !snake.some(segment => segment.x === newFood.x && segment.y === newFood.y);
     }
