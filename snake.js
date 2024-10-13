@@ -129,8 +129,9 @@ function draw() {
             maxscore = score;
             showCongratulationsMessage(maxscore); // Show the message after the game ends
         }
-    } 
+    } else {
         snake.unshift(newHead); // Add new head to the snake
+    }
 
     // Draw the score
     ctx.fillStyle = "black";
