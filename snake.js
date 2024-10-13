@@ -117,7 +117,7 @@ function draw() {
 
     if (collision(newHead, snake)) {
         clearInterval(game);
-        alert("Game Over!");
+     //   alert("Game Over!");
     } else {
         snake.unshift(newHead); // Add new head to the snake
     }
