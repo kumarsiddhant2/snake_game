@@ -71,6 +71,13 @@ function generateFood() {
     return newFood;
 }
 
+// Open a new tab with congratulations message
+function showCongratulationsMessage() {
+    const newTab = window.open("", "Congratulations", "width=300,height=100");
+    newTab.document.write("<p style='font-size:20px;text-align:center;'>Congratulations! New Max Score!</p>");
+    newTab.document.close(); // Ensure the tab is fully loaded
+}
+
 // Draw the game
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -104,6 +111,7 @@ function draw() {
         // Update maximum score if current score exceeds it
         if (score > maxscore) {
             maxscore = score;
+            showCongratulationsMessage(); // Display congrats message for new max score
         }
     } else {
         snake.pop(); // Remove the tail
