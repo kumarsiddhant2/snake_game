@@ -54,6 +54,9 @@ function collision(newHead, snake) {
 
 // Generate food in a valid position
 function generateFood() {
+    const maxX = Math.floor(canvas.width / box);
+    const maxY = Math.floor(canvas.height / box);
+    
     let validPosition = false;
     let newFood;
 
@@ -114,9 +117,10 @@ function draw() {
 
     if (collision(newHead, snake)) {
         clearInterval(game);
+        alert("Game Over!");
+    } else {
+        snake.unshift(newHead); // Add new head to the snake
     }
-
-    snake.unshift(newHead); // Add new head to the snake
 
     // Draw the score
     ctx.fillStyle = "black";
