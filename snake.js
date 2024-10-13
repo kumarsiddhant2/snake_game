@@ -107,11 +107,6 @@ function draw() {
     if (snakeX === food.x && snakeY === food.y) {
         score++;
         food = generateFood();
-
-        // Update maximum score if current score exceeds it
-        if (score > maxscore) {
-            maxscore = score;
-        }
     } else {
         snake.pop(); // Remove the tail
     }
