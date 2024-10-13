@@ -72,7 +72,7 @@ function generateFood() {
 }
 
 // Open a new tab with congratulations message
-function showCongratulationsMessage() {
+function showCongratulationsMessage(maxscore) {
     const newTab = window.open("", "Congratulations", "width=300,height=100");
     newTab.document.write("<p style='font-size:20px;text-align:center;'>Congratulations! Your max score = " + maxscore + "</p>");
     newTab.document.close(); // Ensure the tab is fully loaded
