@@ -111,7 +111,6 @@ function draw() {
         // Update maximum score if current score exceeds it
         if (score > maxscore) {
             maxscore = score;
-            showCongratulationsMessage(maxscore); // Display congrats message for new max score
         }
     } else {
         snake.pop(); // Remove the tail
@@ -125,6 +124,11 @@ function draw() {
 
     if (collision(newHead, snake)) {
         clearInterval(game);
+        // If current score exceeds the maxscore, show congratulations
+        if (score > maxscore) {
+            maxscore = score;
+            showCongratulationsMessage(maxscore); // Show the message after the game ends
+        }
     } 
         snake.unshift(newHead); // Add new head to the snake
 
