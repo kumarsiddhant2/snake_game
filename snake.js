@@ -117,9 +117,8 @@ function draw() {
 
     if (collision(newHead, snake)) {
         clearInterval(game);
-    } else {
+    } 
         snake.unshift(newHead); // Add new head to the snake
-    }
 
     // Draw the score
     ctx.fillStyle = "black";
